@@ -5,12 +5,14 @@ import { defineConfig } from 'vite';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 
-// PORT is only needed for dev/preview server — not for `vite build`.
 const rawPort = process.env.PORT;
 const port = rawPort ? Number(rawPort) : 3000;
 
-// BASE_PATH defaults to '/' for standalone static builds (e.g. GitHub Pages).
-const basePath = process.env.BASE_PATH ?? '/';
+// IMPORTANT: GitHub Pages repository name
+const basePath =
+  process.env.NODE_ENV === 'production'
+    ? '/carrpointsteven/'
+    : '/';
 
 export default defineConfig({
   base: basePath,
