@@ -8,14 +8,13 @@ import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 const rawPort = process.env.PORT;
 const port = rawPort ? Number(rawPort) : 3000;
 
-// IMPORTANT: GitHub Pages repository name
-const basePath =
-  process.env.NODE_ENV === 'production'
-    ? '/carrpointsteven/'
-    : '/';
-
 export default defineConfig({
-  base: basePath,
+  // GitHub Pages repository name
+  base:
+    process.env.NODE_ENV === 'production'
+      ? '/carrpointsteven/'
+      : '/',
+
   plugins: [
     react(),
     tailwindcss(),
@@ -34,6 +33,7 @@ export default defineConfig({
         ]
       : []),
   ],
+
   resolve: {
     alias: {
       '@': path.resolve(import.meta.dirname, 'src'),
@@ -46,11 +46,14 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom'],
   },
+
   root: path.resolve(import.meta.dirname),
+
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
   },
+
   server: {
     port,
     strictPort: true,
@@ -60,6 +63,7 @@ export default defineConfig({
       strict: true,
     },
   },
+
   preview: {
     port,
     host: '0.0.0.0',
