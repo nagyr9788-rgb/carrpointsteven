@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "CARPOINT STEVEN SRL"
+description = "A professional static company website for CARPOINT STEVEN SRL, a Romanian road freight transport company based in Șimleu Silvaniei, Sălaj, Romania. The site presents the company's services, contact information, and company details in a trustworthy, traditional European logistics industry style — no backend, no database, fully static."
+version = "1.0.0"
+id = "artifacts/carpoint-steven"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23461
+
+[services.development]
+run = "pnpm --filter @workspace/carpoint-steven run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/carpoint-steven", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/carpoint-steven/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23461"
+BASE_PATH = "/"
